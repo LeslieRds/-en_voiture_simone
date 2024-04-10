@@ -1,0 +1,38 @@
+@import 'variables';
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-inline: 25px;
+    .form-inputs {
+        width: 100%;
+
+    }
+    input.form-control {
+        background-color: $secondary-color;
+        border-radius: $s-radius;
+    }
+}
+
+.devise-links-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-block: 10px;
+}
+
+.half-inputs-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    .half-width-inputs {
+        width: 45%;
+    }
+}
+
+.full-width-inputs {
+    width: 100%;
+}

@@ -1,0 +1,48 @@
+/* ---------- VARIABLES ---------- */
+// SIZES
+$navbar-height: 100px;
+
+$fsize1: 3rem;
+$fsize2: 2rem;
+$fsize3: 1.5rem;
+$fsize4: 0.8rem;
+
+// BORDER RADIUS
+$s-radius: 5px;
+$m-radius: 10px;
+$l-radius: 20px;
+
+// COLORS
+$primary-color: black;
+$secondary-color: white;
+/* ------------------------------- */
+
+
+
+/* ---------- GENERIC CLASSES ---------- */
+// FONT-SIZES
+.fsize4 {
+    font-size: $fsize4;
+}
+
+.fsize3 {
+    font-size: $fsize3;
+}
+
+.fsize2 {
+    font-size: $fsize2;
+}
+
+.fsize1 {
+    font-size: $fsize1;
+}
+
+// COLORS
+.p-color {
+    color: $primary-color !important;
+}
+
+.s-color {
+    color: $secondary-color !important;
+}
+/* ------------------------------------- */

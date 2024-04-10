@@ -1,0 +1,22 @@
+<div class="index-cars-container">
+<h2 class="m-bold-title">Nos voitures</h2>
+    <div class="index-cars-cards-container">
+        <% @cars.each do |car| %>
+            <div class="car-card back-plate">
+                <h3 class="s-bold-title"><%= car.model %></h3>
+                <div class="car-card-details">
+                    <p><%= car.brand %></p>
+                    <p><%= car.year_of_production %></p>
+                    <p><b>$<%= car.price_per_day %></b> /day</p>
+                </div>
+                <%# <%= cl_image_tag car.photo.key %>
+                <% if car.photo.key %>
+                    <%= cl_image_tag car.photo.key, width: 245, height: 163 %>
+                <% else %>
+                    <img src="https://images.unsplash.com/photo-1490985830292-06e0fe60d725?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=245&q=80" alt="">
+                <% end %>
+                <%= link_to 'See this car', car_path(car), class: 'secondary-cta m-title' %>
+            </div>
+        <% end %>
+    </div>
+</div>

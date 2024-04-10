@@ -1,12 +1,33 @@
-.navbar-lewagon {
+@import 'variables';
+
+header.yield-container {
+  height: $navbar-height;
+  width: 100vw;
+  display: flex;
   justify-content: space-between;
-  background: white;
-}
+  align-items: flex-end;
+  padding: 25px;
+  margin-bottom: 55px;
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
-}
+  ul {
+    width: 800px;
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+    li {
+
+      a,
+      a:hover {
+        color: $primary-color;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .login-register-container {
+    width: 305px;
+    display: flex;
+    gap: 10px;
+  }
 }

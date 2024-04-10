@@ -1,2 +1,39 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+
+<div class="home-container">
+    <div class="back-plate home-main-card">
+        <h2 class="m-bold-title">Quelle est notre mission ?</h2>
+        <div>
+            <p>En voiture Simone, c'est de la location de voiture, facile et rapide sur Paris</p>
+            <img src="https://res.cloudinary.com/ddt8brfwz/image/upload/v1712760039/tabea-schimpf-O7WzqmeYoqc-unsplash_bollnf.jpg" alt="An illustration of car" width="426">
+        </div>
+    </div>
+
+    <div class="home-discover-or-rent-cta-conainer">
+        <%= link_to 'Discover all cars', cars_path, class: "main-cta fsize3" %>
+        <p class="m-bold-title">Or</p>
+        <%= link_to 'Rent your own', new_car_path, class: "secondary-cta fsize3" %>
+    </div>
+
+    <hr>
+
+    <h2 class="m-bold-title">Our latest</h2>
+
+    <div class="home-our-latest-container">
+        <% @cars.each do |car| %>
+            <div class="car-card back-plate">
+                <h3 class="s-bold-title"><%= car.model %></h3>
+                <div class="car-card-details">
+                    <p><%= car.brand %></p>
+                    <p><%= car.year_of_production %></p>
+                    <p><b>$<%= car.price_per_day %></b> /day</p>
+                </div>
+                <% if car.photo.key %>
+                  <%= cl_image_tag car.photo.key, width: 245, height: 163 %>
+                <% else %>
+                    <img src="https://images.unsplash.com/photo-1490985830292-06e0fe60d725?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=245&q=80" alt="">
+                <% end %>
+                <%= link_to 'See this car', car_path(car), class: 'secondary-cta m-title' %>
+            </div>
+        <% end %>
+    </div>
+</div>

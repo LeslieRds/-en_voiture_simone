@@ -1,0 +1,45 @@
+<div class="new-car-container back-plate">
+    <% if @car.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@car.errors.count, "error") %> prohibited this car from being saved:</h2>
+
+        <ul>
+        <% @car.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= simple_form_for(@car) do |f| %>
+        <div class="half-inputs-container">
+            <%= f.input :brand,
+                        autofocus: true,
+                        wrapper_html: { class: "half-width-inputs" },
+                        label_html: { class: "s-bold-title" }%>
+            <%= f.input :model,
+                        wrapper_html: { class: "half-width-inputs" },
+                        label_html: { class: "s-bold-title" }%>
+        </div>
+
+        <div class="half-inputs-container">
+            <%= f.input :year_of_production,
+                        autofocus: true,
+                        wrapper_html: { class: "half-width-inputs" },
+                        input_html: { min: "1900" },
+                        label_html: { class: "s-bold-title" }%>
+            <%= f.input :price_per_day,
+                        wrapper_html: { class: "half-width-inputs" },
+                        input_html: { min: "0" },
+                        label_html: { class: "s-bold-title" }%>
+        </div>
+
+        <%= f.input :photo, as: :file %>
+
+        <%= f.input :address,
+                        wrapper_html: { class: "full-width-inputs" },
+                        label_html: { class: "s-bold-title" }%>
+
+        <%= f.submit 'Rent it', class: 's-bold-title main-cta' %>
+    <% end %>
+</div>

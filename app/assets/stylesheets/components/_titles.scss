@@ -1,0 +1,35 @@
+@import 'variables';
+
+.s-bold-title {
+    font-size: 1.5rem;
+    color: $primary-color;
+    font-weight: bold;
+}
+
+.m-bold-title {
+    font-size: 2rem;
+    color: $primary-color;
+    font-weight: bold;
+}
+
+.l-bold-title, .l-bold-title:hover {
+    font-size: 3rem;
+    color: $primary-color;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.s-title {
+    font-size: 1.5rem;
+    color: $primary-color;
+}
+
+.m-title {
+    font-size: 1.5rem;
+    color: $primary-color;
+}
+
+.l-title {
+    font-size: 1.5rem;
+    color: $primary-color;
+}
