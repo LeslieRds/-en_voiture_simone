@@ -4,7 +4,7 @@
     <h2 class="m-bold-title">Bookings For My Own Cars</h2>
     <div class="bookings-cards-container">
         <% @my_cars_bookings.each do |booking| %>
-            <div class="booking-card back-plate">
+            <div class="booking-card cartouche">
                 <h3 class="s-bold-title"><%= booking[:details].car.model %></h3>
                 <div class="car-card-details">
                     <p><%= booking[:details].car.brand %></p>
@@ -28,7 +28,7 @@
     <h2 class="m-bold-title">My Bookings</h2>
     <div class="bookings-cards-container">
         <% @my_bookings.each do |booking| %>
-            <div class="booking-card back-plate">
+            <div class="booking-card cartouche">
                 <h3 class="s-bold-title"><%= booking[:details].car.model %></h3>
                 <div class="car-card-details">
                     <p><%= booking[:details].car.brand %></p>

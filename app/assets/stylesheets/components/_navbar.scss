@@ -1,33 +1,5 @@
 @import 'variables';
 
-header.yield-container {
-  height: $navbar-height;
-  width: 100vw;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  padding: 25px;
-  margin-bottom: 55px;
-
-  ul {
-    width: 800px;
-    display: flex;
-    justify-content: space-between;
-    list-style-type: none;
-
-    li {
-
-      a,
-      a:hover {
-        color: $primary-color;
-        text-decoration: none;
-      }
-    }
-  }
-
-  .login-register-container {
-    width: 305px;
-    display: flex;
-    gap: 10px;
-  }
+.navbar img {
+  border-radius: 50%;
 }

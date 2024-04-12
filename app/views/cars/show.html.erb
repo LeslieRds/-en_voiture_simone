@@ -1,18 +1,16 @@
 <div class="show-car-container">
     <h2 class="m-bold-title"><%= @car.model.capitalize %></h2>
-    <div class="show-car-card back-plate">
-    <% if @car.photo.key %>
-        <%= cl_image_tag @car.photo.key, width: 550 %>
-    <% else %>
+    <div class="show-car-card cartouche">
         <img src="https://images.unsplash.com/photo-1490985830292-06e0fe60d725?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=550&q=80" alt="">
-    <% end %>
 
         <div class="show-car-card-details">
             <div class="show-car-card-infos">
                 <h3 class="s-title"><%= "#{@car.model.capitalize} - #{@car.brand.upcase}" %></h3>
                 <p class="show-card-year"><%= @car.year_of_production %></p>
-                <p class="show-card-address"><%= @car.address %></p>
-                <p class="show-card-price-per-day"><b>$<%= @car.price_per_day %></b> /day</p>
+                <p class="show-card-year">"<%= @car.description %>"</p>
+                <p class="show-card-year"><%= @car.nb_passenger %> Max. Passagers</p>
+                <p class="show-card-address"><%= @car.address %><br><%= @car.zipcode%>    <%= @car.city%></p>
+                <p class="show-card-price-per-day"><b>€<%= @car.price_per_day %></b> /par jours</p>
             </div>
 
             <div class="show-card-book-section">
@@ -21,13 +19,10 @@
                     <p class="fsize4" id="to-label"></p>
                     <p class="fsize4" id="recap-label"></p>
 
-                    <%# Flatpickr's conatiner, with price_per_day and unavailables_dates values %>
-                    <input type="string" placeholder="Select your dates" data-controller="flatpickr" data-flatpickr-array-value=<%= @unavailable_dates %> data-flatpickr-price-per-day-value=<%= @car.price_per_day %>>
-
                     <%# Simple_form inputs, where Flatipickr will put the dates %>
-                    <%= f.input :start_date, as: :hidden, input_html: { data: { controller: "datepicker" } } %>
+                    <%= f.input :start_date, as: :hidden, input_html: { placeholder: "Choisissez les dates", data: { controller: "datepicker" } } %>
 
-                    <%= f.submit 'Book now', class: 'main-cta m-bold-title' %>
+                    <%= f.submit 'Réservez-la!', class: 'main-cta m-bold-title' %>
                 <% end %>
             </div>
 

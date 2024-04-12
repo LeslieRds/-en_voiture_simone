@@ -23,7 +23,7 @@ class CarsController < ApplicationController
     end
   end
 
-  def my_cars
+    def my_cars
     @my_cars = Car.where(user: current_user)
   end
 
