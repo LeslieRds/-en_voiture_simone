@@ -12,16 +12,21 @@
 @import "pages/index";
 
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400;500;700&family=Raleway:wght@100;200;400;500;700&display=swap');
-
 /* ---------- INITIALIZATION ---------- */
 
-*, ul, h1, h2, h3, p {
+p {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Allura', cursive !important;
+}
 
-    font-family: 'Montserrat', sans-serif !important;
+
+*, ul, h1, h2, h3 {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Anton', sans-serif !important;
 }
 
 body {
