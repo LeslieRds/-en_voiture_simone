@@ -34,12 +34,30 @@
                         label_html: { class: "s-bold-title" }%>
         </div>
 
+        <div class="half-inputs-container">
+            <%= f.input :description,
+                        wrapper_html: { class: "full-width-inputs" },
+                        label_html: { class: "s-bold-title" }%>
+            <%= f.input :nb_passenger,
+                        wrapper_html: { class: "full-width-inputs" },
+                        input_html: { min: "2", max: "7" },
+                        label_html: { class: "s-bold-title" }%>
+        </div>
+
         <%= f.input :photo, as: :file %>
 
         <%= f.input :address,
                         wrapper_html: { class: "full-width-inputs" },
                         label_html: { class: "s-bold-title" }%>
+        <div class="half-inputs-container">
+        <%= f.input :zipcode,
+                        wrapper_html: { class: "full-width-inputs" },
+                        label_html: { class: "s-bold-title" }%>
+        <%= f.input :city,
+                        wrapper_html: { class: "full-width-inputs" },
+                        label_html: { class: "s-bold-title" }%>
+        </div>
 
-        <%= f.submit 'Rent it', class: 's-bold-title main-cta' %>
+        <%= f.submit 'Mettre en location', class: 's-bold-title main-cta' %>
     <% end %>
 </div>

@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-
+include BookingsHelper
   def create
     @car = Car.find(params[:car_id])
     @booking = @car.bookings.build(user: current_user)
@@ -20,14 +20,18 @@ class BookingsController < ApplicationController
   end
 
   def index
-      @my_bookings = formatMyBooking(Booking.where(user_id: current_user.id))
-      bookings_for_my_cars = []
-      current_user.cars.each do |car|
-          # Get every bookings, unless where accepted == true
-          car.bookings.each { |booking| bookings_for_my_cars << booking unless booking.accepted }
-      end
-      @my_cars_bookings = formatMyCarsBooking(bookings_for_my_cars)
+    @my_bookings = formatMyBooking(Booking.where(user_id: current_user.id))
+
+    # Get bookings related to current_user's cars, ensure there are no nils
+    bookings_for_my_cars = current_user.cars.flat_map(&:bookings).select { |booking| booking.accepted.nil? }
+    @my_cars_bookings = formatMyCarsBooking(bookings_for_my_cars)
+
+    # Accepted and rejected bookings
+    @accepted_bookings = formatMyCarsBooking(current_user.cars.flat_map(&:bookings).select(&:accepted))
+    @rejected_bookings = formatMyCarsBooking(current_user.cars.flat_map(&:bookings).select { |b| b.accepted == false })
   end
+
+
 
   def acceptBooking
       # Set true to 'accepted' column.
@@ -38,6 +42,25 @@ class BookingsController < ApplicationController
       else
           redirect_to bookings_path, alert: "An error has occured."
       end
+
+    def rejectBooking
+      @booking = Booking.find(params[:id])
+      @booking.accepted = false
+      if @booking.save
+        redirect_to bookings_path, notice: "Booking successfully rejected."
+      else
+        redirect_to bookings_path, alert: "An error has occurred."
+      end
+    end
+
+    def accepted_bookings
+      @accepted_bookings = Booking.where(accepted: true)
+    end
+
+    def rejected_bookings
+      @rejected_bookings = Booking.where(accepted: false)
+    end
+
   end
 
   private
@@ -47,27 +70,38 @@ class BookingsController < ApplicationController
   end
 
   def formatMyBooking(bookings)
-      # Format the booking to get booking details, status 'accepted' or 'pending' and the class directly in the hash
-      # To avoid logic in the view
-      bookings.map { |booking| {details: booking, status: bookingStatusMessage(booking), total_price: getTotalPrice(booking)} }
+    bookings.map do |booking|
+      {
+        details: booking,
+        status: bookingStatusMessage(booking),
+        total_price: booking ? getTotalPrice(booking) : 0
+      }
+    end
   end
 
   def formatMyCarsBooking(bookings)
-      # Format the booking to get booking details, status 'accepted' or 'pending' and the class directly in the hash
-      # To avoid logic in the view
-      bookings.map { |booking| {details: booking, total_price: getTotalPrice(booking)} }
+    bookings.map do |booking|
+      {
+        details: booking,
+        total_price: booking ? getTotalPrice(booking) : 0
+      }
+    end
   end
+
 
   def getTotalPrice(booking)
       # Return the total price of the booking
-      bookings_duration_seconds = (booking.end_date - booking.start_date)
-      bookings_duration_hours = (bookings_duration_seconds / 3600)
-      bookings_duration_days = (bookings_duration_hours / 24)
+      bookings_duration_days = (booking.end_date - booking.start_date)
       (booking.car.price_per_day * (bookings_duration_days)).round
   end
 
   def bookingStatusMessage(booking)
-      # Format the :status value to get th emessage to display in the cards, and the class we have to apply
-      booking.accepted ? {message: 'accepted', class: 'status-accepted'} : {message: 'pending...', class: 'status-pending'}
+    if booking.accepted
+      { message: 'Accepté!', class: 'status-accepted' }
+    elsif booking.accepted == false
+      { message: 'Refusé', class: 'status-rejected' }
+    else
+      { message: 'En attente de validation...', class: 'status-pending' }
+    end
   end
 end
