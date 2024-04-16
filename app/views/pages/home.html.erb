@@ -1,13 +1,12 @@
 <main>
   <section>
-    <div class="cotainer py-5">
-      <h2>En voiture Simone, c'est quoi ?</h2>
-      <p>C'est de la location de voiture, facile et rapide dans toute la France, et en toute confiance</p>
-      <img src="https://res.cloudinary.com/ddt8brfwz/image/upload/v1712760039/tabea-schimpf-O7WzqmeYoqc-unsplash_bollnf.jpg" alt="An illustration of car" width="426">
-      <%= link_to 'Découvrez les voitures', cars_path, class: "main-cta fsize3" %>
-      <p class="m-bold-title">ou</p>
-      <%= link_to 'Louer la vôtre', new_car_path, class: "secondary-cta fsize3" %>
+    <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://res.cloudinary.com/ddt8brfwz/image/upload/v1712760039/tabea-schimpf-O7WzqmeYoqc-unsplash_bollnf.jpg);">
+      <div class="container">
+        <h1>En voiture Simone, C'est quoi?</h1>
+        <p>C'est la location de voiture pour femmes, en toute confiance, à Paris</p>
+        <%= link_to 'Découvrez les voitures', cars_path, class: 'btn btn-success'%>
+      </div>
     </div>
-    <hr>
+
   </section>
 </main>
