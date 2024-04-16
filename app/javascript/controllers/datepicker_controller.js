@@ -10,9 +10,9 @@ export default class extends Controller {
     // Construction of the Flatpickr's instance
     flatpickr(this.element, {
       mode: 'range',
-      enableTime: true,
-      time_24hr: true,
+      enableTime: false,
       minDate: "today",
+      dateFormat: "dd-MM-yyyy",
       disable: this.arrayValue,
       onClose: () => {
 
@@ -22,7 +22,7 @@ export default class extends Controller {
         var endDate = dateRange[1];
 
         // Definition of my date's format options
-        var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+        var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
         // Simple_form inputs's values assignments
         document.getElementById("starts_at").value = startDate;
@@ -40,9 +40,7 @@ export default class extends Controller {
 
   getDayNumber(endDate, startDate) {
     // Return the number of day of a booking from the milliseconds obtained from the subtraction of startDate from endDate
-    const seconds = (new Date(endDate) - new Date(startDate)) / 1000;
-    const hours = seconds / 3600;
-    const days = hours / 24;
+    const days = (new Date(endDate) - new Date(startDate));
     return days
   }
 

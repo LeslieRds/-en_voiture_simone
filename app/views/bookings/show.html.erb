@@ -1,0 +1,15 @@
+<main>
+  <section class="container py-5">
+    <h2>Détails de la réservation</h2>
+    <div>
+      <h3>Voiture: <%= @booking.car.model %></h3>
+      <p>Marque: <%= @booking.car.brand %></p>
+      <p>Prix Total: €<%= display_total_price(@booking) %></p>
+      <p>Du: <%= @booking.start_date.strftime("%A %e %B %Y") %> au <%= @booking.end_date.strftime("%A %e %B %Y") %></p>
+      <%= link_to 'Retour aux réservations', bookings_path, class: 'btn btn-primary' %>
+      <% if policy(@booking).destroy? %>
+        <%= button_to 'Supprimer', booking_path, method: :delete, data: { confirm: 'Êtes-vous sûr?' } %>
+      <% end %>
+    </div>
+  </section>
+</main>

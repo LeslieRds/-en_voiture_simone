@@ -1,41 +1,19 @@
 <main>
   <section>
     <div class="container py-5">
-  <%# MY CARS BOOKINGS SECTION %>
-      <h2>Les réservations de mes voitures</h2>
+      <h2><%= current_user.admin? ? "Toutes les demandes de réservation" : "Mes demandes de réservation" %></h2>
       <div>
-      <% @my_cars_bookings.each do |booking| %>
-          <div>
-              <h3><%= booking[:details].car.model %></h3>
-              <div>
-                <p><%= booking[:details].car.brand %></p>
-                <p><b>$<%= booking[:total_price] %></b></p>
-                <p>Réservé par: <%= booking[:details].user.email %></p>
-              </div>
-              <p class="fsize4"><%= "Depuis : #{booking[:details].start_date.strftime("%A %e %B %Y")}" %><%= "Au #{booking[:details].end_date.strftime("%A %e %B %Y")}" %></p>
-              <%# <%= cl_image_tag car.photo.key %>
-              <%= link_to 'Accepter', accept_booking_path(booking[:details]), class: 'accept-cta s-bold-title', data: { turbo_method: :patch } %>
-              <%= link_to 'Refuser', reject_booking_path(booking[:details]), class: 'reject-cta s-bold-title', data: { turbo_method: :patch } %>
-          </div>
-      <% end %>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="container py-5">
-  <%# MY BOOKINGS SECTION %>
-      <h2>Mes demandes de réservation</h2>
-      <div>
-      <% @my_bookings.each do |booking| %>
+      <% @bookings.each do |booking| %>
         <div>
-        <h3><%= booking[:details].car.model %></h3>
+        <h3><%= booking.car.model %></h3>
           <div >
-          <p><%= booking[:details].car.brand %></p>
-          <p><b>$<%= booking[:total_price] %></b></p>
+          <p><%= booking.car.brand %></p>
+          <p><b>€<%= display_total_price(booking) %></b></p>
           </div>
-        <p class="fsize4"><%= "From #{booking[:details].start_date.strftime("%A %e %B %Y")}" %><%= "To #{booking[:details].end_date.strftime("%A %e %B %Y")}" %></p>
-        <p class=<%= booking[:status][:class] %>>Statut : <%= booking[:status][:message] %></p>
+        <p class="fsize4"><%= "From #{booking.start_date.strftime("%A %e %B %Y")}" %><%= "To #{booking.end_date.strftime("%A %e %B %Y")}" %></p>
+          <% if policy(booking).show? %>
+            <%= link_to 'Voir la réservation', booking_path(booking), method: :show, class: 'btn btn-danger' %>
+          <% end %>
         </div>
       <% end %>
       </div>

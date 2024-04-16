@@ -1,0 +1,40 @@
+    <%= simple_form_for(@car) do |f| %>
+        <div class="half-inputs-container">
+            <%= f.input :brand,
+                        autofocus: true,
+                        wrapper_html: { class: "half-width-inputs" },
+                        label_html: { class: "s-bold-title" }%>
+            <%= f.input :model,
+                        wrapper_html: { class: "half-width-inputs" },
+                        label_html: { class: "s-bold-title" }%>
+        </div>
+
+        <div class="half-inputs-container">
+            <%= f.input :year_of_production,
+                        autofocus: true,
+                        wrapper_html: { class: "half-width-inputs" },
+                        input_html: { min: "1900" },
+                        label_html: { class: "s-bold-title" }%>
+            <%= f.input :price_per_day,
+                        wrapper_html: { class: "half-width-inputs" },
+                        input_html: { min: "0" },
+                        label_html: { class: "s-bold-title" }%>
+        </div>
+
+        <div class="half-inputs-container">
+            <%= f.input :description,
+                        wrapper_html: { class: "full-width-inputs" },
+                        label_html: { class: "s-bold-title" }%>
+            <%= f.input :nb_passenger,
+                        wrapper_html: { class: "full-width-inputs" },
+                        input_html: { min: "2", max: "7" },
+                        label_html: { class: "s-bold-title" }%>
+        </div>
+
+        <%= f.input :photo, as: :file %>
+
+
+      <div class="form-actions">
+        <%= f.button :submit %>
+      </div>
+   <% end %>
