@@ -60,6 +60,7 @@ gem "geocoder"
 gem "chartkick"
 
 gem "pundit"
+gem "rails_admin_pundit", :github => "sudosu/rails_admin_pundit"
 
 group :development, :test do
   gem "dotenv-rails"

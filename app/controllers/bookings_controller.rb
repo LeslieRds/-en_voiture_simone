@@ -3,6 +3,7 @@ include BookingsHelper
   def create
     @car = Car.find(params[:car_id])
     @booking = @car.bookings.build(user: current_user)
+    authorize @booking
 
     # Extrait directement les dates de début et de fin à partir des params
     # puisqu'ils ne sont pas autorisés directement par booking_params
@@ -20,47 +21,8 @@ include BookingsHelper
   end
 
   def index
-    @my_bookings = formatMyBooking(Booking.where(user_id: current_user.id))
-
-    # Get bookings related to current_user's cars, ensure there are no nils
-    bookings_for_my_cars = current_user.cars.flat_map(&:bookings).select { |booking| booking.accepted.nil? }
-    @my_cars_bookings = formatMyCarsBooking(bookings_for_my_cars)
-
+    @bookings = policy_scope(Booking)
     # Accepted and rejected bookings
-    @accepted_bookings = formatMyCarsBooking(current_user.cars.flat_map(&:bookings).select(&:accepted))
-    @rejected_bookings = formatMyCarsBooking(current_user.cars.flat_map(&:bookings).select { |b| b.accepted == false })
-  end
-
-
-
-  def acceptBooking
-      # Set true to 'accepted' column.
-      @booking = Booking.find(params[:id])
-      @booking.accepted = true
-      if @booking.save
-          redirect_to bookings_path, notice: "Booking successfully accepted !"
-      else
-          redirect_to bookings_path, alert: "An error has occured."
-      end
-
-    def rejectBooking
-      @booking = Booking.find(params[:id])
-      @booking.accepted = false
-      if @booking.save
-        redirect_to bookings_path, notice: "Booking successfully rejected."
-      else
-        redirect_to bookings_path, alert: "An error has occurred."
-      end
-    end
-
-    def accepted_bookings
-      @accepted_bookings = Booking.where(accepted: true)
-    end
-
-    def rejected_bookings
-      @rejected_bookings = Booking.where(accepted: false)
-    end
-
   end
 
   private

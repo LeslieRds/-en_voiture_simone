@@ -5,8 +5,8 @@ class CarsController < ApplicationController
 
   def show
     @car = Car.find(params[:id])
-    @booking = Booking.new
     authorize @car
+    @booking = Booking.new
   end
 
   def new
@@ -16,7 +16,7 @@ class CarsController < ApplicationController
 
   def create
     @car = Car.new(car_params)
-    @car.user = current_user # Assurez-vous que current_user est bien défini
+    @car = current_user.cars.build(car_params) # Assurez-vous que current_user est bien défini
     authorize @car
     if @car.save
       redirect_to car_path(@car), notice: 'Car was successfully created.'
@@ -49,6 +49,6 @@ class CarsController < ApplicationController
 
   private
     def car_params
-      params.require(:car).permit(:brand, :model, :year_of_production, :price_per_day)
+      params.require(:car).permit(:brand, :model, :year_of_production, :price_per_day, :description, :nb_passenger)
     end
 end

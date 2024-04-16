@@ -7,9 +7,7 @@
             <div class="show-car-card-infos">
                 <h3 class="s-title"><%= "#{@car.model.capitalize} - #{@car.brand.upcase}" %></h3>
                 <p class="show-card-year"><%= @car.year_of_production %></p>
-                <p class="show-card-year">"<%= @car.description %>"</p>
                 <p class="show-card-year"><%= @car.nb_passenger %> Max. Passagers</p>
-                <p class="show-card-address"><%= @car.address %><br><%= @car.zipcode%>    <%= @car.city%></p>
                 <p class="show-card-price-per-day"><b>€<%= @car.price_per_day %></b> /par jours</p>
             </div>
 
@@ -24,6 +22,10 @@
 
                     <%= f.submit 'Réservez-la!', class: 'main-cta m-bold-title' %>
                 <% end %>
+                <% if policy(@car).edit? %>
+                    <%= link_to 'Modifier', edit_car_path(@car) %>
+                <% end %>
+                <%= button_to "Destroy", @car, method: :delete is policy(@car).destroy? %>
             </div>
 
         </div>

@@ -7,4 +7,8 @@ class User < ApplicationRecord
   has_many :cars, dependent: :destroy
   has_many :bookings, dependent: :destroy
   has_one_attached :photo
+
+  def admin?
+    admin
+  end
 end

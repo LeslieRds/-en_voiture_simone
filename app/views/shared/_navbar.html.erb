@@ -10,13 +10,12 @@
           <a class="nav-link active" aria-current="page" href="/cars">Nos voitures</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/cars/new">Louer sa voiture</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" href="/bookings">Mes réservations</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/my_cars">Mes voitures</a>
+          <% if policy(Car.new).create? %>
+          <a class="nav-link" href="/cars/new">Ajouter une voiture</a>
+          <% end %>
         </li>
       </ul>
       <li class="d-flex">

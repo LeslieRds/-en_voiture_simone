@@ -6,6 +6,14 @@ GIT
       actionpack (>= 5.2)
       activemodel (>= 5.2)
 
+GIT
+  remote: https://github.com/sudosu/rails_admin_pundit.git
+  revision: 5fde2da4120bde58b5edf4e0a3351d392ddee85c
+  specs:
+    rails_admin_pundit (0.0.1)
+      pundit (>= 0.2.3)
+      rails_admin (>= 0.6.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -59,6 +67,10 @@ GEM
       globalid (>= 0.3.6)
     activemodel (7.0.8.1)
       activesupport (= 7.0.8.1)
+    activemodel-serializers-xml (1.0.2)
+      activemodel (> 5.x)
+      activesupport (> 5.x)
+      builder (~> 3.1)
     activerecord (7.0.8.1)
       activemodel (= 7.0.8.1)
       activesupport (= 7.0.8.1)
@@ -148,6 +160,18 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    kaminari (1.2.2)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.2.2)
+      kaminari-activerecord (= 1.2.2)
+      kaminari-core (= 1.2.2)
+    kaminari-actionview (1.2.2)
+      actionview
+      kaminari-core (= 1.2.2)
+    kaminari-activerecord (1.2.2)
+      activerecord
+      kaminari-core (= 1.2.2)
+    kaminari-core (1.2.2)
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -163,6 +187,7 @@ GEM
     minitest (5.22.3)
     msgpack (1.7.2)
     multipart-post (2.4.0)
+    nested_form (0.3.2)
     net-http (0.4.1)
       uri
     net-imap (0.4.10)
@@ -191,6 +216,9 @@ GEM
       activesupport (>= 3.0.0)
     racc (1.7.3)
     rack (2.2.9)
+    rack-pjax (1.1.0)
+      nokogiri (~> 1.5)
+      rack (>= 1.1)
     rack-test (2.1.0)
       rack (>= 1.3)
     rails (7.0.8.1)
@@ -214,6 +242,12 @@ GEM
     rails-html-sanitizer (1.6.0)
       loofah (~> 2.21)
       nokogiri (~> 1.14)
+    rails_admin (3.0.0.beta2)
+      activemodel-serializers-xml (>= 1.0)
+      kaminari (>= 0.14, < 2.0)
+      nested_form (~> 0.3)
+      rack-pjax (>= 0.7)
+      rails (>= 6.0, < 8)
     railties (7.0.8.1)
       actionpack (= 7.0.8.1)
       activesupport (= 7.0.8.1)
@@ -304,6 +338,7 @@ DEPENDENCIES
   puma (~> 5.0)
   pundit
   rails (~> 7.0.8, >= 7.0.8.1)
+  rails_admin_pundit!
   redis (~> 4.0)
   sassc-rails
   selenium-webdriver

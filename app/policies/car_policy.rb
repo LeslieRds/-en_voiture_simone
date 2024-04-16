@@ -10,15 +10,15 @@ class CarPolicy < ApplicationPolicy
 
   #Seul l'admin peut créer, modifier et supprimer
   def create?
-    user.admin
+    user.present? && user.admin?
   end
 
   def update?
-    user.admin
+    user.admin?
   end
 
   def destroy?
-    user.admin
+    user.admin?
   end
 
   class Scope < Scope
