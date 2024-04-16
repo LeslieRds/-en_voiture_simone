@@ -1,18 +1,13 @@
 <main>
-  <div class="home-container">
-    <div class="cartouche card mb-3">
-      <div class="card-body">
-        <h2 class="m-bold-title">En voiture Simone, c'est quoi ?</h2>
-        <p class="card-text">C'est de la location de voiture, facile et rapide dans toute la France, et en toute confiance</p>
-      </div>
-        <img src="https://res.cloudinary.com/ddt8brfwz/image/upload/v1712760039/tabea-schimpf-O7WzqmeYoqc-unsplash_bollnf.jpg" alt="An illustration of car" width="426">
-    </div>
-
-    <div class="home-discover-or-rent-cta-conainer">
-        <%= link_to 'Découvrez les voitures', cars_path, class: "main-cta fsize3" %>
-        <p class="m-bold-title">ou</p>
-        <%= link_to 'Louer la vôtre', new_car_path, class: "secondary-cta fsize3" %>
+  <section>
+    <div class="cotainer py-5">
+      <h2>En voiture Simone, c'est quoi ?</h2>
+      <p>C'est de la location de voiture, facile et rapide dans toute la France, et en toute confiance</p>
+      <img src="https://res.cloudinary.com/ddt8brfwz/image/upload/v1712760039/tabea-schimpf-O7WzqmeYoqc-unsplash_bollnf.jpg" alt="An illustration of car" width="426">
+      <%= link_to 'Découvrez les voitures', cars_path, class: "main-cta fsize3" %>
+      <p class="m-bold-title">ou</p>
+      <%= link_to 'Louer la vôtre', new_car_path, class: "secondary-cta fsize3" %>
     </div>
     <hr>
-  </div>
+  </section>
 </main>

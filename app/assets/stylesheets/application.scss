@@ -15,25 +15,12 @@
 /* ---------- INITIALIZATION ---------- */
 
 p {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
     font-family: 'Josephin Slab', sans-serif !important;
 }
 
 
 *, ul, h1, h2, h3 {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
   font-family: 'Anton', sans-serif !important;
-}
-
-body {
-    position: relative;
-    overflow-x: hidden;
-    min-height: 100vh;
-    padding-bottom: 150px;
 }
 
 /* ------------------------------------ */

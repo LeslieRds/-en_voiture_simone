@@ -1,11 +1,13 @@
-<div class="index-bookings-container">
+<main>
+  <section>
+    <div class="container py-5">
   <%# MY CARS BOOKINGS SECTION %>
-  <h2 class="m-bold-title">Les réservations de mes voitures</h2>
-  <div class="bookings-cards-container">
+      <h2>Les réservations de mes voitures</h2>
+      <div>
       <% @my_cars_bookings.each do |booking| %>
-          <div class="booking-card cartouche">
-              <h3 class="s-bold-title"><%= booking[:details].car.model %></h3>
-              <div class="car-card-details">
+          <div>
+              <h3><%= booking[:details].car.model %></h3>
+              <div>
                 <p><%= booking[:details].car.brand %></p>
                 <p><b>$<%= booking[:total_price] %></b></p>
                 <p>Réservé par: <%= booking[:details].user.email %></p>
@@ -14,24 +16,29 @@
               <%# <%= cl_image_tag car.photo.key %>
               <%= link_to 'Accepter', accept_booking_path(booking[:details]), class: 'accept-cta s-bold-title', data: { turbo_method: :patch } %>
               <%= link_to 'Refuser', reject_booking_path(booking[:details]), class: 'reject-cta s-bold-title', data: { turbo_method: :patch } %>
-
           </div>
       <% end %>
-  </div>
+      </div>
+    </div>
+  </section>
 
+  <section>
+    <div class="container py-5">
   <%# MY BOOKINGS SECTION %>
-  <h2 class="m-bold-title">Mes demandes de réservation</h2>
-  <div class="bookings-cards-container">
-    <% @my_bookings.each do |booking| %>
-      <div class="booking-card cartouche">
-        <h3 class="s-bold-title"><%= booking[:details].car.model %></h3>
-        <div class="car-card-details">
+      <h2>Mes demandes de réservation</h2>
+      <div>
+      <% @my_bookings.each do |booking| %>
+        <div>
+        <h3><%= booking[:details].car.model %></h3>
+          <div >
           <p><%= booking[:details].car.brand %></p>
           <p><b>$<%= booking[:total_price] %></b></p>
-        </div>
+          </div>
         <p class="fsize4"><%= "From #{booking[:details].start_date.strftime("%A %e %B %Y")}" %><%= "To #{booking[:details].end_date.strftime("%A %e %B %Y")}" %></p>
         <p class=<%= booking[:status][:class] %>>Statut : <%= booking[:status][:message] %></p>
+        </div>
+      <% end %>
       </div>
-    <% end %>
-  </div>
-</div>
+    </div>
+  </section>
+</main>
