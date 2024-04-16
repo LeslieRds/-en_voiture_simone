@@ -1,38 +1,29 @@
-<div class="show-car-container">
-    <h2 class="m-bold-title"><%= @car.model.capitalize %></h2>
-    <div class="show-car-card cartouche">
-        <img src="https://images.unsplash.com/photo-1490985830292-06e0fe60d725?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=550&q=80" alt="">
-
-        <div class="show-car-card-details">
-            <div class="show-car-card-infos">
-                <h3 class="s-title"><%= "#{@car.model.capitalize} - #{@car.brand.upcase}" %></h3>
-                <p class="show-card-year"><%= @car.year_of_production %></p>
-                <p class="show-card-year"><%= @car.nb_passenger %> Max. Passagers</p>
-                <p class="show-card-year"><%= @car.description %> </p>
-
-                <p class="show-card-price-per-day"><b>€<%= @car.price_per_day %></b> /par jours</p>
-            </div>
-
-            <div class="show-card-book-section">
-                <%= simple_form_for(@booking, url: car_bookings_path(@car)) do |f| %>
-                    <p class="fsize4" id="from-label"></p>
-                    <p class="fsize4" id="to-label"></p>
-                    <p class="fsize4" id="recap-label"></p>
-
-                    <%# Simple_form inputs, where Flatipickr will put the dates %>
-                    <%= f.input :start_date, as: :hidden, input_html: { placeholder: "Choisissez les dates", data: { controller: "datepicker" } } %>
-
-                    <%= f.submit 'Réservez-la!', class: 'main-cta m-bold-title' %>
-                <% end %>
-                <% if policy(@car).edit? %>
-                    <%= link_to 'Modifier', edit_car_path %>
-                <% end %>
-                <% if policy(@car).destroy? %>
-                  <%= button_to 'Supprimer', car_path, method: :delete, data: { confirm: 'Êtes-vous sûr?' } %>
-                <% end %>
-            </div>
-
-        </div>
+<main>
+  <section>
+    <div class="banner" style="background-image: url(https://res.cloudinary.com/ddt8brfwz/image/upload/v1713278406/ruvim-noga-fyoGx76Cm7E-unsplash_itjsxu.jpg);">
+      <div class="container">
+        <h1><%= "#{@car.model.capitalize} - #{@car.brand.upcase}" %></h1>
+        <p><%= @car.year_of_production %></p>
+        <p><%= @car.nb_passenger %> Max. Passagers</p>
+        <p><%= @car.description %> </p>
+        <p><b><%= @car.price_per_day %></b>€ /par jour</p></p>
+        <%= simple_form_for(@booking, url: car_bookings_path(@car)) do |f| %>
+          <p class="fsize4" id="from-label"></p>
+          <p class="fsize4" id="to-label"></p>
+          <p class="fsize4" id="recap-label"></p>
+          <%# Simple_form inputs, where Flatipickr will put the dates %>
+          <%= f.input :start_date, as: :hidden, input_html: { placeholder: "Choisissez les dates", data: { controller: "datepicker" } } %>
+          <%= f.submit 'Réservez-la!', class: 'btn btn-info' %>
+        <% end %>
+      </div>
+      <div class="half-inputs-container show-button">
+        <% if policy(@car).edit? %>
+          <%= link_to 'Modifier', edit_car_path, class: 'btn btn-warning' %>
+        <% end %>
+        <% if policy(@car).destroy? %>
+          <%= button_to 'Supprimer', car_path, method: :delete, data: { confirm: 'Êtes-vous sûr?' }, class: 'btn btn-danger' %>
+        <% end %>
+      </div>
     </div>
-    <%= link_to 'Back to cars', cars_path, class: 'secondary-cta' %>
-</div>
+  </section>
+</main>

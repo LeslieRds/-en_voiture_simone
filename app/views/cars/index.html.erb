@@ -1,21 +1,20 @@
-
-<div class="cars_index">
-  <h2>Nos voitures</h2>
-</div>
-
-<div class="cards-cars">
-  <% @cars.each do |car| %>
-    <div class="card-car">
-      <%#  image %>
-      <div class="card-car-info">
-        <h2><%= car.model %></h2>
-          <h5><%= car.brand %></h5>
-          <h5><%= car.year_of_production %></h5>
-          <h5><b>$<%= car.price_per_day %></b> /jours</h5>
-      </div>
-      <button type="button">
-        <%= link_to 'See this car', car_path(car), class: 'secondary-cta m-title' %>
-      </button>
+<main>
+  <div class="banner" style="background-image: url(https://res.cloudinary.com/ddt8brfwz/image/upload/v1712760039/tabea-schimpf-O7WzqmeYoqc-unsplash_bollnf.jpg);">
+    <div class="container">
+      <h1>En voiture Simone, Nos voitures</h1>
+      <p>Choisissez le modèle qui vous plait parmi notre sélection</p>
     </div>
-  <% end %>
-</div>
+  </div>
+  <section class="cards-index">
+    <div class="cards">
+      <% @cars.each do |car| %>
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://res.cloudinary.com/ddt8brfwz/image/upload/v1713278406/ruvim-noga-fyoGx76Cm7E-unsplash_itjsxu.jpg);">
+          <h2><%= car.model %></h2>
+          <h5><%= car.brand %></h5>
+          <h5><b><%= car.price_per_day %>€</b> /jours</h5>
+          <%= link_to 'See this car', car_path(car), class: 'btn btn-success' %>
+        </div>
+      <% end %>
+    </div>
+  </section>
+</main>
