@@ -1,0 +1,23 @@
+.footer {
+  background: #F4F4F4;
+  text-align: center;
+  height: 100px;
+  padding-top: 50px;
+  color: rgba(0,0,0,0.3);
+}
+
+.footer em {
+  color: $gradient-two;
+}
+
+.footer a {
+  color: black;
+  opacity: 0.15;
+  text-decoration: none;
+  font-size: 24px;
+  padding: 0px 10px;
+}
+.footer a:hover {
+  opacity: 1;
+  color: $gradient-two;
+}
