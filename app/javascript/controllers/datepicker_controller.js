@@ -12,7 +12,7 @@ export default class extends Controller {
       mode: 'range',
       enableTime: false,
       minDate: "today",
-      dateFormat: "dd-MM-yyyy",
+      dateFormat: "d-M-y",
       disable: this.arrayValue,
       onClose: () => {
 
